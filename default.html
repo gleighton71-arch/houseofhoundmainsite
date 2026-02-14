@@ -1,10 +1,436 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House of Hound - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        /* Logo Animation */
+        .logo-animation {
+            width: 280px;
+            
+            margin: 0 auto 0;
+            animation: saltShake 5s ease-in-out infinite;
+        }
+
+        .logo-animation img {
+            width: 50%;
+            height: 50%;
+            object-fit: contain;
+        }
+
+        @keyframes saltShake {
+            0% { transform: translateY(0) rotate(0deg); }
+            5% { transform: translateY(-3px) rotate(-2deg); }
+            10% { transform: translateY(3px) rotate(2deg); }
+            15% { transform: translateY(-3px) rotate(-2deg); }
+            20% { transform: translateY(3px) rotate(2deg); }
+            25% { transform: translateY(-3px) rotate(-2deg); }
+            30% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Main Content */
+        .hero {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0rem 2rem 0 2rem;
+            text-align: center;
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .hero-left {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-right {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #8B4513;
+            margin-bottom: 1rem;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #D2691E;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .email-signup {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .email-form input {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #E8D4C4;
+            border-radius: 5px;
+            font-size: 1rem;
+            min-width: 250px;
+            transition: border-color 0.3s;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: #D2691E;
+        }
+
+        .email-form button {
+            background: linear-gradient(135deg, #D2691E 0%, #8B4513 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .email-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(210, 105, 30, 0.3);
+        }
+
+        .services {
+            margin-top: 1rem;
+        }
+
+        .services h2 {
+            font-size: 2rem;
+            color: #8B4513;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .services h2 .paw-elevated {
+            display: inline-block;
+            margin: 2px;
+            transform: translateY(-10px);
+        }
+
+        .services-subtitle {
+            font-size: 1.1rem;
+            color: #D2691E;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* .service-logo:first-child {
+            grid-column: 1;
+            grid-row: 1 / 3;
+        } */
+
+        .service-logo {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        /* .service-logo:first-child {
+            min-height: 380px;
+            box-shadow: 0 10px 40px rgba(210, 105, 30, 0.3);
+            border: 3px solid #D2691E;
+            background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+        } */
+
+        .service-logo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-logo:first-child:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 50px rgba(210, 105, 30, 0.4);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .service-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #D2691E 0%, #8B4513 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        footer {
+            background: rgba(139, 69, 19, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                padding: 1rem;
+                margin: 1rem auto;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .hero-left {
+                width: 100%;
+            }
+
+            .hero-right {
+                width: 100%;
+                text-align: center;
+            }
+
+            .services {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-form input {
+                min-width: 100%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            .service-logo:first-child {
+                grid-column: 1 / -1;
+                grid-row: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0.5rem;
+                margin: 0.5rem auto;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                gap: 1rem;
+            }
+
+            .logo-animation {
+                width: 150px;
+                height: 150px;
+            }
+
+            .services h2 {
+                font-size: 1.3rem;
+            }
+
+            .services-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/HoH_Logo.jpg" alt="House of Hound Logo">
+            </div>
+        </nav>
+    </header>
 
+    <section class="hero">
+        <div class="services">
+             <div class="logo-animation">
+                <img src="images/logo.jpg" alt="House of Hound">
+            </div>
+            <h2><span class="paw-elevated">🐾</span>🐾 <span class="coming-soon-badge">Pawsed while under construction</span> 🐾<span class="paw-elevated">🐾</span></h2>
+            <div class="services-grid">
+                <div class="service-logo">
+                    <img src="images/HoH_Hydrotherapy Logo.jpg" alt="Hydrotherapy">
+                </div>
+                <div class="service-logo">
+                    <img src="images/HoH_Clinical Animal Behaviour Logo.jpg" alt="Clinical Animal Behaviour">
+                </div>
+                <div class="service-logo">
+                    <img src="images/HoH_Physiotherapy Logo.jpg" alt="Physiotherapy">
+                </div>
+                <div class="service-logo">
+                    <img src="images/HoH_Training Logo.jpg" alt="Training">
+                </div>
+                <div class="service-logo">
+                    <img src="images/HoH_Academy Logo.jpg" alt="Academy">
+                </div>
+                <div class="service-logo">
+                    <img src="images/HoH_Pet Gun Dogs Logo.jpg" alt="Pet Gun Dogs">
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 House of Hound. All rights reserved.</p>
+        <p>Dedicated to premium canine care and wellness</p>
+    </footer>
 </body>
 </html>
